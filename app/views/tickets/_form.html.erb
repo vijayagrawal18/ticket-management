@@ -1,0 +1,87 @@
+<%= form_with(model: ticket, local: true) do |form| %>
+  <% if ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% ticket.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :_id %>
+    <%= form.text_field :_id, id: :ticket__id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :ticket_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :external_id %>
+    <%= form.text_field :external_id, id: :ticket_external_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type, id: :ticket_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, id: :ticket_subject %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :ticket_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.text_field :priority, id: :ticket_priority %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :ticket_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :submitter_id %>
+    <%= form.text_field :submitter_id, id: :ticket_submitter_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :assignee_id %>
+    <%= form.text_field :assignee_id, id: :ticket_assignee_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :organization_id %>
+    <%= form.text_field :organization_id, id: :ticket_organization_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :has_incidents %>
+    <%= form.text_field :has_incidents, id: :ticket_has_incidents %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_at %>
+    <%= form.datetime_select :due_at, id: :ticket_due_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :via %>
+    <%= form.text_field :via, id: :ticket_via %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

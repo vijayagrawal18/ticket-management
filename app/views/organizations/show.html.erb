@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @organization._id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @organization.url %>
+</p>
+
+<p>
+  <strong>External:</strong>
+  <%= @organization.external_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @organization.details %>
+</p>
+
+<p>
+  <strong>Shared tickets:</strong>
+  <%= @organization.shared_tickets %>
+</p>
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

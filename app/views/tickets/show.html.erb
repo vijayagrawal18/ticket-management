@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @ticket._id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @ticket.url %>
+</p>
+
+<p>
+  <strong>External:</strong>
+  <%= @ticket.external_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @ticket.type %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @ticket.subject %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ticket.description %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @ticket.priority %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @ticket.status %>
+</p>
+
+<p>
+  <strong>Submitter:</strong>
+  <%= @ticket.submitter %>
+</p>
+
+<p>
+  <strong>Assignee:</strong>
+  <%= @ticket.assignee %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @ticket.organization %>
+</p>
+
+<p>
+  <strong>Has incidents:</strong>
+  <%= @ticket.has_incidents %>
+</p>
+
+<p>
+  <strong>Due at:</strong>
+  <%= @ticket.due_at %>
+</p>
+
+<p>
+  <strong>Via:</strong>
+  <%= @ticket.via %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

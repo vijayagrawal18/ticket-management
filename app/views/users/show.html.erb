@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @user._id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @user.url %>
+</p>
+
+<p>
+  <strong>External:</strong>
+  <%= @user.external_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Alias:</strong>
+  <%= @user.alias %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @user.active %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @user.verified %>
+</p>
+
+<p>
+  <strong>Shared:</strong>
+  <%= @user.shared %>
+</p>
+
+<p>
+  <strong>Locale:</strong>
+  <%= @user.locale %>
+</p>
+
+<p>
+  <strong>Timezone:</strong>
+  <%= @user.timezone %>
+</p>
+
+<p>
+  <strong>Last login at:</strong>
+  <%= @user.last_login_at %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>Signature:</strong>
+  <%= @user.signature %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @user.organization %>
+</p>
+
+<p>
+  <strong>Suspended:</strong>
+  <%= @user.suspended %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

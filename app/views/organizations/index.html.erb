@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Organizations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Url</th>
+      <th>External</th>
+      <th>Name</th>
+      <th>Details</th>
+      <th>Shared tickets</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization._id %></td>
+        <td><%= link_to :url, organization.url %></td>
+        <td><%= organization.external_id %></td>
+        <td><%= organization.name %></td>
+        <td><%= organization.details %></td>
+        <td><%= organization.shared_tickets %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br/>
+<%= paginate @organizations %>

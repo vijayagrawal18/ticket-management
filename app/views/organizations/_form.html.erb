@@ -1,0 +1,47 @@
+<%= form_with(model: organization, local: true) do |form| %>
+  <% if organization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+      <% organization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :_id %>
+    <%= form.text_field :_id, id: :organization__id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :organization_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :external_id %>
+    <%= form.text_field :external_id, id: :organization_external_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :organization_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :details %>
+    <%= form.text_field :details, id: :organization_details %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shared_tickets %>
+    <%= form.text_field :shared_tickets, id: :organization_shared_tickets %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
