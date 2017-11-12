@@ -1,56 +1,63 @@
 <h1>Users</h1>
 
+<%= render 'shared/flash_notifications' %>
 <%= render 'shared/search_bar' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Url</th>
-      <th>External</th>
-      <th>Name</th>
-      <th>Alias</th>
-      <th>Active</th>
-      <th>Verified</th>
-      <th>Shared</th>
-      <th>Locale</th>
-      <th>Timezone</th>
-      <th>Last login at</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Signature</th>
-      <th>Organization</th>
-      <th>Suspended</th>
-      <th>Role</th>
-      <th>Created at</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<% if @users.exists? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= user._id %></td>
-        <td><%= link_to :url, user.url %></td>
-        <td><%= user.external_id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.alias %></td>
-        <td><%= user.active %></td>
-        <td><%= user.verified %></td>
-        <td><%= user.shared %></td>
-        <td><%= user.locale %></td>
-        <td><%= user.timezone %></td>
-        <td><%= user.last_login_at %></td>
-        <td><%= user.email %></td>
-        <td><%= user.phone %></td>
-        <td><%= user.signature %></td>
-        <td><%= user.organization&.name %></td>
-        <td><%= user.suspended %></td>
-        <td><%= user.role %></td>
-        <td><%= user.created_at %></td>
+        <th>Id</th>
+        <th>Url</th>
+        <th>External</th>
+        <th>Name</th>
+        <th>Alias</th>
+        <th>Active</th>
+        <th>Verified</th>
+        <th>Shared</th>
+        <th>Locale</th>
+        <th>Timezone</th>
+        <th>Last login at</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Signature</th>
+        <th>Organization</th>
+        <th>Suspended</th>
+        <th>Role</th>
+        <th>Created at</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user._id %></td>
+          <td><%= link_to :url, user.url %></td>
+          <td><%= user.external_id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.alias %></td>
+          <td><%= user.active %></td>
+          <td><%= user.verified %></td>
+          <td><%= user.shared %></td>
+          <td><%= user.locale %></td>
+          <td><%= user.timezone %></td>
+          <td><%= user.last_login_at %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.signature %></td>
+          <td><%= user.organization&.name %></td>
+          <td><%= user.suspended %></td>
+          <td><%= user.role %></td>
+          <td><%= user.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-records notification alert">
+    No users available for given input.
+  </div>
+<% end %>
 
 <br/>
 <%= paginate @users %>

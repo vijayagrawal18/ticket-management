@@ -10,11 +10,9 @@
 
   <body>
     <div class="home-link">
-      <%= link_to "Home", "/" %>
+      <%= link_to "Home", "/" if request.path != "/" %>
     </div>
-    <% flash.each do |key, value| %>
-      <div class="notification <%= key %>"><%= value %></div>
-    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -1,38 +1,45 @@
 <h1>Organizations</h1>
 
+<%= render 'shared/flash_notifications' %>
 <%= render 'shared/search_bar' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Url</th>
-      <th>External</th>
-      <th>Name</th>
-      <th>Details</th>
-      <th>Shared Tickets</th>
-      <th>Created At</th>
-      <th>Tags</th>
-      <th>Domains</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizations.each do |organization| %>
+<% if @organizations.exists? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= organization._id %></td>
-        <td><%= link_to :url, organization.url %></td>
-        <td><%= organization.external_id %></td>
-        <td><%= organization.name %></td>
-        <td><%= organization.details %></td>
-        <td><%= organization.shared_tickets %></td>
-        <td><%= organization.created_at %></td>
-        <td><%= organization.tags.pluck(:name).join(", ") %></td>
-        <td><%= organization.domains.pluck(:name).join(", ") %></td>
+        <th>Id</th>
+        <th>Url</th>
+        <th>External</th>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Shared Tickets</th>
+        <th>Created At</th>
+        <th>Tags</th>
+        <th>Domains</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @organizations.each do |organization| %>
+        <tr>
+          <td><%= organization._id %></td>
+          <td><%= link_to :url, organization.url %></td>
+          <td><%= organization.external_id %></td>
+          <td><%= organization.name %></td>
+          <td><%= organization.details %></td>
+          <td><%= organization.shared_tickets %></td>
+          <td><%= organization.created_at %></td>
+          <td><%= organization.tags.pluck(:name).join(", ") %></td>
+          <td><%= organization.domains.pluck(:name).join(", ") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-records notification alert">
+    No organizations available for given input.
+  </div>
+<% end %>
 
 <br/>
 <%= paginate @organizations %>

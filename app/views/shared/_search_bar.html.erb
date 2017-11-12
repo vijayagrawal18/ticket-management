@@ -4,7 +4,7 @@
       <%= select_tag "field", options_for_select(@fields, @search_field), prompt: "Select field" %>
     </span>
     <span>
-      <%= text_field_tag 'value', @search_term, placeholder: 'Enter search term' %>
+      <%= text_field_tag 'value', @search_term, placeholder: 'Enter search term', class: "search_term" %>
     </span>
     <span>
       <%= submit_tag 'Search' %>
@@ -14,4 +14,3 @@
     </span>
   <% end %>
 </div>
-<hr/>
