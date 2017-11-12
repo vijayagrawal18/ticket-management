@@ -17,7 +17,7 @@ class User < ApplicationRecord
                           "submitted_tickets_count"
                         ]
 
-      column_names - non_searchables  + ["tag"]
+      column_names - non_searchables  + [TAG_FIELD]
     end
   end
 

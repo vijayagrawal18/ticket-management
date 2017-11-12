@@ -15,10 +15,9 @@ class Ticket < ApplicationRecord
 
   def self.searchable_attributes
     @@_searchable_attributes ||= begin
-      non_searchables = ["id", "updated_at",]
-      additional_searchables = ["tag"]
+      non_searchables = ["id", "updated_at"]
 
-      column_names - non_searchables + additional_searchables
+      column_names - non_searchables + [TAG_FIELD]
     end
   end
 

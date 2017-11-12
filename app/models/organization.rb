@@ -13,7 +13,7 @@ class Organization < ApplicationRecord
     @@_searchable_attributes ||= begin
       non_searchables = ["id", "updated_at", "users_count", "tickets_count"]
 
-      column_names - non_searchables + ["tag", "domain"]
+      column_names - non_searchables + [TAG_FIELD, DOMAIN_FIELD]
     end
   end
 

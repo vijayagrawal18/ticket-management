@@ -5,8 +5,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    # todo vijay implement counter cache.
-    @organizations = Organization.includes(:domains, :tags).order(:_id).page params[:page]
+    @organizations = Organization.includes(:domains, :tags)
+                                 .order(:_id)
+                                 .page params[:page]
+
     @organizations = search @organizations
   end
 

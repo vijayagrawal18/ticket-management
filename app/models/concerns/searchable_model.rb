@@ -1,18 +1,32 @@
 module SearchableModel
   extend ActiveSupport::Concern
 
+  TAG_FIELD = "tag"
+  DOMAIN_FIELD = "domain"
+  ORGANIZATION_FIELD = "organization_id"
+
   module ClassMethods
 
     def search_by(field, term)
       term = cast(field, term)
 
       case field
-      when "tag", "domain", "organization_id"
+      when TAG_FIELD, DOMAIN_FIELD, ORGANIZATION_FIELD
         send "search_by_#{field}", term
       when *column_names
         generic_search_by field, term
       else
         all
+      end
+    end
+
+    def cast(field, term)
+      if boolean_columns.include? field
+        boolify term
+      elsif datetime_columns.include? field
+        DateTime.parse(term) rescue term
+      else
+        term
       end
     end
 
@@ -24,7 +38,7 @@ module SearchableModel
       columns_for "datetime"
     end
 
-    def columns_for(type)
+    def columns_for type
       columns.select do |col|
         col.sql_type == type
       end.map do |col|
@@ -32,21 +46,11 @@ module SearchableModel
       end
     end
 
-    def boolify(term)
+    def boolify term
       if term == "true"
         true
       elsif term == "false"
         false
-      else
-        term
-      end
-    end
-
-    def cast(field, term)
-      if boolean_columns.include? field
-        boolify term
-      elsif datetime_columns.include? field
-        DateTime.parse(term) rescue term
       else
         term
       end
