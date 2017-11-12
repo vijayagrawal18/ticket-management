@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20171111191532) do
     t.string "name", null: false
     t.string "details"
     t.boolean "shared_tickets", default: false, null: false
+    t.integer "tickets_count", default: 0, null: false
+    t.integer "users_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["_id"], name: "index_organizations_on__id", unique: true
@@ -98,6 +100,8 @@ ActiveRecord::Schema.define(version: 20171111191532) do
     t.integer "organization_id"
     t.boolean "suspended", default: false, null: false
     t.string "role", null: false
+    t.integer "assigned_tickets_count", default: 0, null: false
+    t.integer "submitted_tickets_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["_id"], name: "index_users_on__id", unique: true

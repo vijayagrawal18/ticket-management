@@ -36,8 +36,16 @@
           <td class="description"><%= ticket.description %></td>
           <td class="priority"><%= ticket.priority %></td>
           <td class="status"><%= ticket.status %></td>
-          <td class="submitter"><%= ticket.submitter.name %></td>
-          <td class="assignee"><%= ticket.assignee&.name || "Unassigned"  %></td>
+          <td class="submitter">
+            <%= link_to ticket.submitter.name, users_path(field: :name, value: ticket.submitter.name) %>
+          </td>
+          <td class="assignee">
+            <% if ticket.assignee %>
+              <%= link_to ticket.assignee.name, users_path(field: :name, value: ticket.assignee.name) %>
+            <% else %>
+              "Unassigned"
+            <% end %>
+          </td>
           <td class="organization"><%= ticket.organization&.name %></td>
           <td class="has_incidents"><%= ticket.has_incidents %></td>
           <td class="due_at"><%= ticket.due_at %></td>

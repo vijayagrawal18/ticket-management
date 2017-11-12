@@ -24,6 +24,8 @@
         <th>Organization</th>
         <th>Suspended</th>
         <th>Role</th>
+        <th>Submitted Tickets</th>
+        <th>Assigned Tickets</th>
         <th>Created at</th>
       </tr>
     </thead>
@@ -45,9 +47,13 @@
           <td><%= user.email %></td>
           <td><%= user.phone %></td>
           <td><%= user.signature %></td>
-          <td><%= user.organization&.name %></td>
+          <td>
+            <%= link_to user.organization.name, organizations_path(field: :name, value: user.organization.name) if user.organization %>
+          </td>
           <td><%= user.suspended %></td>
           <td><%= user.role %></td>
+          <td><%= link_to user.submitted_tickets_count, tickets_path(field: :submitter, value: user.name)%></td>
+          <td><%= link_to user.assigned_tickets_count, tickets_path(field: :assignee, value: user.name)%></td>
           <td><%= user.created_at %></td>
         </tr>
       <% end %>

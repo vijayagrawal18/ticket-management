@@ -13,9 +13,11 @@
         <th>Name</th>
         <th>Details</th>
         <th>Shared Tickets</th>
-        <th>Created At</th>
         <th>Tags</th>
         <th>Domains</th>
+        <th>Users</th>
+        <th>Tickets</th>
+        <th>Created At</th>
       </tr>
     </thead>
 
@@ -28,9 +30,11 @@
           <td><%= organization.name %></td>
           <td><%= organization.details %></td>
           <td><%= organization.shared_tickets %></td>
-          <td><%= organization.created_at %></td>
           <td><%= organization.tags.pluck(:name).join(", ") %></td>
           <td><%= organization.domains.pluck(:name).join(", ") %></td>
+          <td><%= link_to organization.users_count,  users_path(field: :organization, value: organization.name)%></td>
+          <td><%= link_to organization.tickets_count,  tickets_path(field: :organization, value: organization.name)%></td>
+          <td><%= organization.created_at %></td>
         </tr>
       <% end %>
     </tbody>

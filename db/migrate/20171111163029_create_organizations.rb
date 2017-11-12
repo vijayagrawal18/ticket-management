@@ -7,6 +7,8 @@ class CreateOrganizations < ActiveRecord::Migration[5.1]
       t.string :name, null: false
       t.string :details
       t.boolean :shared_tickets, null: false, default: false
+      t.integer :tickets_count, null: false, default: 0
+      t.integer :users_count, null: false, default: 0
 
       t.timestamps
     end

@@ -18,6 +18,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.references :organization, foreign_key: true
       t.boolean :suspended, null: false, default: false
       t.string :role, null: false
+      t.integer :assigned_tickets_count, null: false, default: 0
+      t.integer :submitted_tickets_count, null: false, default: 0
 
       t.timestamps
     end

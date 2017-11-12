@@ -1,11 +1,12 @@
 class Ticket < ApplicationRecord
   include SearchableModel
 
-  belongs_to :submitter, class_name: 'User'
-  belongs_to :assignee, class_name: 'User', optional: true
-  belongs_to :organization, optional: true
   has_many :tag_lists, as: :taggable
   has_many :tags, through: :tag_lists
+
+  belongs_to :submitter, class_name: 'User', counter_cache: :submitted_tickets_count
+  belongs_to :assignee, class_name: 'User', optional: true, counter_cache: :assigned_tickets_count
+  belongs_to :organization, optional: true, counter_cache: true
 
   enum ticket_type: %i(incident problem question task)
   enum priority: %i(low normal high urgent)
@@ -23,13 +24,14 @@ class Ticket < ApplicationRecord
     case field
     when "submitter", "assignee"
       if term.present?
-        joins(field.to_sym).where("users.name = ?", term)
+        value = User.where("name = ?", term)
       else
-        where(field => nil)
+        value = nil
       end
+
+      where(field => value)
     else
       super(field, term)
     end
   end
-
 end
