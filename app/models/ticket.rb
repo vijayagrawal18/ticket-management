@@ -14,10 +14,12 @@ class Ticket < ApplicationRecord
   enum via: %i(web chat voice)
 
   def self.searchable_attributes
-    non_searchables = ["id", "updated_at", "submitter_id", "assignee_id", "organization_id"]
-    additional_searchables = ["submitter", "assignee", "organization"]
+    @@_searchable_attributes ||= begin
+      non_searchables = ["id", "updated_at", "submitter_id", "assignee_id", "organization_id"]
+      additional_searchables = ["assignee", "submitter", "organization", "tag"]
 
-    column_names - non_searchables + additional_searchables
+      column_names - non_searchables + additional_searchables
+    end
   end
 
   def self.search_by(field, term)

@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.includes(:submitter, :assignee, :organization).order(:status, priority: :desc).page params[:page]
+    @tickets = Ticket.includes(:submitter, :assignee, :organization, :tags).order(:status, priority: :desc).page params[:page]
     @tickets = search @tickets
   end
 

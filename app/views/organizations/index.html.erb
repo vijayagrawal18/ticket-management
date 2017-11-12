@@ -30,10 +30,10 @@
           <td><%= organization.name %></td>
           <td><%= organization.details %></td>
           <td><%= organization.shared_tickets %></td>
-          <td><%= organization.tags.pluck(:name).join(", ") %></td>
-          <td><%= organization.domains.pluck(:name).join(", ") %></td>
-          <td><%= link_to organization.users_count,  users_path(field: :organization, value: organization.name)%></td>
-          <td><%= link_to organization.tickets_count,  tickets_path(field: :organization, value: organization.name)%></td>
+          <td><%= tag_names organization %></td>
+          <td><%= domain_names organization %></td>
+          <td><%= users_link organization %></td>
+          <td><%= tickets_link organization %></td>
           <td><%= organization.created_at %></td>
         </tr>
       <% end %>

@@ -10,6 +10,10 @@ class Organization < ApplicationRecord
   has_many :users
 
   def self.searchable_attributes
-    (column_names - ["id", "updated_at"] + ["tag", "domain"])
+    @@_searchable_attributes ||= begin
+      non_searchables = ["id", "updated_at", "users_count", "tickets_count"]
+
+      column_names - non_searchables + ["tag", "domain"]
+    end
   end
 end

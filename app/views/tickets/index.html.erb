@@ -21,6 +21,7 @@
         <th class="has_incidents">Has incidents</th>
         <th class="due_at">Due at</th>
         <th class="via">Via</th>
+        <th class="tags">Tags</th>
         <th class="created_at">Created at</th>
       </tr>
     </thead>
@@ -36,20 +37,13 @@
           <td class="description"><%= ticket.description %></td>
           <td class="priority"><%= ticket.priority %></td>
           <td class="status"><%= ticket.status %></td>
-          <td class="submitter">
-            <%= link_to ticket.submitter.name, users_path(field: :name, value: ticket.submitter.name) %>
-          </td>
-          <td class="assignee">
-            <% if ticket.assignee %>
-              <%= link_to ticket.assignee.name, users_path(field: :name, value: ticket.assignee.name) %>
-            <% else %>
-              "Unassigned"
-            <% end %>
-          </td>
-          <td class="organization"><%= ticket.organization&.name %></td>
+          <td class="submitter"><%= submitter_link ticket %></td>
+          <td class="assignee"><%= assignee_link ticket %></td>
+          <td class="organization"><%= organization_link ticket %></td>
           <td class="has_incidents"><%= ticket.has_incidents %></td>
           <td class="due_at"><%= ticket.due_at %></td>
           <td class="via"><%= ticket.via %></td>
+          <td class="tags"><%= tag_names ticket %></td>
           <td class="created_at"><%= ticket.created_at %></td>
         </tr>
       <% end %>
