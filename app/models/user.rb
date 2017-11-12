@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :submitted_tickets, foreign_key: "submitter_id", class_name: "Ticket"
 
   def self.searchable_attributes
-    (column_names - ["id", "updated_at"])
+    (column_names - ["id", "updated_at", "organization_id"] + ["organization"])
   end
 
 end

@@ -4,8 +4,16 @@ module SearchableModel
   module ClassMethods
 
     def boolean_columns
+      columns_for "boolean"
+    end
+
+    def datetime_columns
+      columns_for "datetime"
+    end
+
+    def columns_for(type)
       columns.select do |col|
-        col.sql_type=="boolean"
+        col.sql_type == type
       end.map do |col|
         col.name
       end
@@ -21,16 +29,32 @@ module SearchableModel
       end
     end
 
+    def cast(field, term)
+      if boolean_columns.include? field
+        boolify term
+      elsif datetime_columns.include? field
+        DateTime.parse(term) rescue term
+      else
+        term
+      end
+    end
+
     def search_by(field, term)
-      term = boolify(term) if boolean_columns.include? field
+      term = cast(field, term)
 
       case field
       when "tag"
         where(id: self.joins(:tags).where("tags.name = ?", term))
       when "domain"
         where(id: self.joins(:domains).where("domains.name = ?", term))
+      when "organization"
+        joins(:organization).where("organizations.name = ?", term)
       when *column_names
-        where("coalesce(#{field}, '') = ?", term)
+        if term.present?
+          where(field => term)
+        else
+          where("#{field} = ? or #{field} IS NULL", term)
+        end
       else
         all
       end

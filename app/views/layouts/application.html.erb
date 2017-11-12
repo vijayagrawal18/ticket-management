@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <div class="home-link">
+      <%= link_to "Home", "/" %>
+    </div>
     <% flash.each do |key, value| %>
       <div class="notification <%= key %>"><%= value %></div>
     <% end %>

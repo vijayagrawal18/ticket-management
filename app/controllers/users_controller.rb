@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.order(:_id).all.page params[:page]
-    @fields = User.searchable_attributes
+    @users = search @users
   end
 
   # GET /users/1
