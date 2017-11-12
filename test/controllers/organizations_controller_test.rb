@@ -7,6 +7,27 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     get organizations_url
+    assert_equal 3, assigns(:organizations).count
+    assert_response :success
+  end
+
+  test "should successfully search" do
+    get organizations_url, params: {"field" => "_id", "value" => @organization._id}
+    assert_equal 1, assigns(:organizations).count
+    assert_response :success
+  end
+
+  test "should detect invalid field" do
+    get organizations_url, params: {"field" => "asd_id", "value" => @organization._id}
+    assert_equal 3, assigns(:organizations).count
+    assert_equal "asd_id not available for search", flash[:alert]
+    assert_response :success
+  end
+
+  test "should show warning when value given but field not" do
+    get organizations_url, params: {"value" => @organization._id}
+    assert_equal 3, assigns(:organizations).count
+    assert_equal "Please select a field", flash[:alert]
     assert_response :success
   end
 

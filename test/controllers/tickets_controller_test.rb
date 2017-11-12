@@ -10,6 +10,26 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should successfully search" do
+    get tickets_url, params: {"field" => "_id", "value" => @ticket._id}
+    assert_equal 1, assigns(:tickets).count
+    assert_response :success
+  end
+
+  test "should detect invalid field" do
+    get tickets_url, params: {"field" => "asd_id", "value" => @ticket._id}
+    assert_equal 3, assigns(:tickets).count
+    assert_equal "asd_id not available for search", flash[:alert]
+    assert_response :success
+  end
+
+  test "should show warning when value given but field not" do
+    get tickets_url, params: {"value" => @ticket._id}
+    assert_equal 3, assigns(:tickets).count
+    assert_equal "Please select a field", flash[:alert]
+    assert_response :success
+  end
+
   test "should get new" do
     get new_ticket_url
     assert_response :success
