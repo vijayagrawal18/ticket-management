@@ -1,10 +1,12 @@
 class TicketsController < ApplicationController
+  include Searchable
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   # GET /tickets
   # GET /tickets.json
   def index
     @tickets = Ticket.order(:status, priority: :desc).all.page params[:page]
+    @fields = Ticket.searchable_attributes
   end
 
   # GET /tickets/1
@@ -70,5 +72,9 @@ class TicketsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
       params.require(:ticket).permit(:_id, :url, :external_id, :type, :subject, :description, :priority, :status, :submitter_id, :assignee_id, :organization_id, :has_incidents, :due_at, :via)
+    end
+
+    def set_model
+      @model = Ticket
     end
 end

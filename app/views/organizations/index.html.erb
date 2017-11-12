@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Organizations</h1>
+
+<%= render 'shared/search_bar' %>
 
 <table>
   <thead>
@@ -10,8 +10,10 @@
       <th>External</th>
       <th>Name</th>
       <th>Details</th>
-      <th>Shared tickets</th>
-      <th colspan="3"></th>
+      <th>Shared Tickets</th>
+      <th>Created At</th>
+      <th>Tags</th>
+      <th>Domains</th>
     </tr>
   </thead>
 
@@ -24,6 +26,9 @@
         <td><%= organization.name %></td>
         <td><%= organization.details %></td>
         <td><%= organization.shared_tickets %></td>
+        <td><%= organization.created_at %></td>
+        <td><%= organization.tags.pluck(:name).join(", ") %></td>
+        <td><%= organization.domains.pluck(:name).join(", ") %></td>
       </tr>
     <% end %>
   </tbody>

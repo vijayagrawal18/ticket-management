@@ -5,6 +5,10 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+
+  h1 {
+    text-align: center;
+  }
 }
 
 p, ol, ul, td {
@@ -48,6 +52,17 @@ div {
 
 #notice {
   color: green;
+}
+
+.notification {
+  padding: 15px;
+  background-color: #90EE90;
+
+  &.alert {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
 }
 
 .field_with_errors {

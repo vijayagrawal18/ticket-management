@@ -1,4 +1,6 @@
 class Ticket < ApplicationRecord
+  include SearchableModel
+
   belongs_to :submitter, class_name: 'User'
   belongs_to :assignee, class_name: 'User', optional: true
   belongs_to :organization, optional: true
@@ -9,4 +11,9 @@ class Ticket < ApplicationRecord
   enum priority: %i(low normal high urgent)
   enum status: %i(open pending hold solved closed)
   enum via: %i(web chat voice)
+
+  def self.searchable_attributes
+    (column_names - ["id", "updated_at"])
+  end
+
 end

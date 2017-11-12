@@ -1,10 +1,13 @@
 class OrganizationsController < ApplicationController
+  include Searchable
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.order(:_id).all.page params[:page]
+    # todo vijay implement counter cache.
+    @organizations = Organization.includes(:domains, :tags).order(:_id).page params[:page]
+    @organizations = search @organizations
   end
 
   # GET /organizations/1
@@ -70,5 +73,9 @@ class OrganizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:_id, :url, :external_id, :name, :details, :shared_tickets)
+    end
+
+    def set_model
+      @model = Organization
     end
 end

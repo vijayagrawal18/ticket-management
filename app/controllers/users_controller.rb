@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  include Searchable
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.order(:_id).all.page params[:page]
+    @fields = User.searchable_attributes
   end
 
   # GET /users/1
@@ -70,5 +72,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:_id, :url, :external_id, :name, :alias, :active, :verified, :shared, :locale, :timezone, :last_login_at, :email, :phone, :signature, :organization_id, :suspended, :role)
+    end
+
+    def set_model
+      @model = User
     end
 end
