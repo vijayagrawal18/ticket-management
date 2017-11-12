@@ -26,7 +26,7 @@ class Ticket < ApplicationRecord
     case field
     when "submitter_id", "assignee_id"
       if term.present?
-        value = User.where("_id = ?", term)
+        value = User.where(_id: term)
       else
         value = nil
       end

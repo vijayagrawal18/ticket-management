@@ -11,7 +11,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should successfully search" do
-    get users_url, params: {"field" => "_id", "value" => @user._id}
+    @user.update(created_at: "2013-08-04 11:03:27")
+
+    get users_url, params: {"field" => "created_at", "value" => "2013-08-04 11:03:27"}
     assert_equal 1, assigns(:users).count
     assert_response :success
   end

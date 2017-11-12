@@ -16,4 +16,12 @@ class Organization < ApplicationRecord
       column_names - non_searchables + ["tag", "domain"]
     end
   end
+
+  def self.search_by_domain term
+    if term.present?
+      where(id: self.joins(:domains).where("domains.name = ?", term))
+    else
+      where.not(id: OrganizationDomain.select(:organization_id))
+    end
+  end
 end

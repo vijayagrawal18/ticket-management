@@ -45,7 +45,7 @@ three:
   priority: high
   status: open
   submitter_id: 3
-  assignee_id: two
+  assignee_id: 1
   organization: one
   has_incidents: true
   due_at: 2017-11-11 14:15:32

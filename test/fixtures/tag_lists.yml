@@ -2,20 +2,20 @@
 
 one:
   taggable_type: Organization
-  taggable_id: Plasmos
+  taggable: one
   tag: one
 
 two:
   taggable_type: Organization
-  taggable_id: Plasmos
+  taggable: one
   tag: two
 
 three:
   taggable_type: Ticket
-  taggable_id: ticket3
+  taggable: three
   tag: two
 
 four:
   taggable_type: User
-  taggable_id: user1
+  taggable_id: 1
   tag: two

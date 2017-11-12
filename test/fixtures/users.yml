@@ -15,7 +15,7 @@ one:
   email: coffeyrasmussen@flotonic.com
   phone: 8335-422-718
   signature: Don't Worry Be Happy!
-  organization_id: one
+  organization: one
   suspended: true
   role: admin
 
@@ -35,7 +35,7 @@ two:
   email: olapittman@flotonic.com
   phone: 9805-292-618
   signature: Don't Worry Be Happy!
-  organization_id: three
+  organization: one
   suspended: false
   role: admin
 
@@ -55,6 +55,5 @@ three:
   email: sallyhammond@flotonic.com
   phone: 8144-293-283
   signature: Don't Worry Be Happy!
-  organization_id: one
   suspended: false
   role: end-user

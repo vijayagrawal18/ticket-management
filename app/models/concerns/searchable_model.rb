@@ -3,6 +3,19 @@ module SearchableModel
 
   module ClassMethods
 
+    def search_by(field, term)
+      term = cast(field, term)
+
+      case field
+      when "tag", "domain", "organization_id"
+        send "search_by_#{field}", term
+      when *column_names
+        generic_search_by field, term
+      else
+        all
+      end
+    end
+
     def boolean_columns
       columns_for "boolean"
     end
@@ -39,26 +52,28 @@ module SearchableModel
       end
     end
 
-    def search_by(field, term)
-      term = cast(field, term)
-
-      case field
-      when "tag"
+    def search_by_tag term
+      if term.present?
         where(id: self.joins(:tags).where("tags.name = ?", term))
-      when "domain"
-        where(id: self.joins(:domains).where("domains.name = ?", term))
-      when "organization_id"
-        where(organization: Organization.where("_id = ?", term))
-      when *column_names
-        if term.present?
-          where(field => term)
-        else
-          where("#{field} = ? or #{field} IS NULL", term)
-        end
       else
-        all
+        where.not(id: TagList.where(taggable_type: self.to_s).select(:taggable_id))
+      end
+    end
+
+    def search_by_organization_id term
+      if term.present?
+        where(organization: Organization.where("_id = ?", term))
+      else
+        where(organization_id: nil)
+      end
+    end
+
+    def generic_search_by field, term
+      if term.present?
+        where(field => term)
+      else
+        where("#{field} = ? or #{field} IS NULL", term)
       end
     end
   end
-
 end

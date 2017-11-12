@@ -11,7 +11,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should successfully search" do
-    get tickets_url, params: {"field" => "_id", "value" => @ticket._id}
+    get tickets_url, params: {"field" => "assignee_id", "value" => ""}
     assert_equal 1, assigns(:tickets).count
     assert_response :success
   end
