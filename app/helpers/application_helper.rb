@@ -1,6 +1,7 @@
 module ApplicationHelper
   def organization_link model
-    link_to(model.organization.name, organizations_path(field: :name, value: model.organization.name)) if model.organization
+    organization = model.organization
+    link_to("#{organization._id} (#{organization.name})", organizations_path(field: :_id, value: organization._id)) if organization
   end
 
   def tag_names model

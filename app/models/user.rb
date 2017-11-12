@@ -11,10 +11,13 @@ class User < ApplicationRecord
 
   def self.searchable_attributes
     @@_searchable_attributes ||= begin
-      non_searchables = ["id", "updated_at", "organization_id",
-                         "assigned_tickets_count", "submitted_tickets_count"]
+      non_searchables = [
+                          "id", "updated_at",
+                          "assigned_tickets_count",
+                          "submitted_tickets_count"
+                        ]
 
-      column_names - non_searchables  + ["organization", "tag"]
+      column_names - non_searchables  + ["tag"]
     end
   end
 

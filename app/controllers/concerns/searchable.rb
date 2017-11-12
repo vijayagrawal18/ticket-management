@@ -14,7 +14,7 @@ module Searchable
 
   def set_fields
     @fields = @model.searchable_attributes.inject({}) do |hash, attribute|
-      hash[attribute.humanize] = attribute
+      hash[attribute.gsub("_", ' ').titleize] = attribute
       hash
     end
   end

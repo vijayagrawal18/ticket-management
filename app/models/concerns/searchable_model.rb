@@ -47,8 +47,8 @@ module SearchableModel
         where(id: self.joins(:tags).where("tags.name = ?", term))
       when "domain"
         where(id: self.joins(:domains).where("domains.name = ?", term))
-      when "organization"
-        where(organization: Organization.where("name = ?", term))
+      when "organization_id"
+        where(organization: Organization.where("_id = ?", term))
       when *column_names
         if term.present?
           where(field => term)

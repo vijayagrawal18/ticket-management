@@ -15,8 +15,8 @@ class Ticket < ApplicationRecord
 
   def self.searchable_attributes
     @@_searchable_attributes ||= begin
-      non_searchables = ["id", "updated_at", "submitter_id", "assignee_id", "organization_id"]
-      additional_searchables = ["assignee", "submitter", "organization", "tag"]
+      non_searchables = ["id", "updated_at",]
+      additional_searchables = ["tag"]
 
       column_names - non_searchables + additional_searchables
     end
@@ -24,9 +24,9 @@ class Ticket < ApplicationRecord
 
   def self.search_by(field, term)
     case field
-    when "submitter", "assignee"
+    when "submitter_id", "assignee_id"
       if term.present?
-        value = User.where("name = ?", term)
+        value = User.where("_id = ?", term)
       else
         value = nil
       end
