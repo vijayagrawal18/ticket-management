@@ -2,8 +2,8 @@
 
 one:
   organization: one
-  domain: one
+  domain: d1
 
 two:
-  organization: two
-  domain: two
+  organization: one
+  domain: d2

@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  taggable_type: MyString
-  taggable_id: 
+  taggable_type: Organization
+  taggable_id: Plasmos
   tag: one
 
 two:
-  taggable_type: MyString
-  taggable_id: 
+  taggable_type: Organization
+  taggable_id: Plasmos
+  tag: two
+
+three:
+  taggable_type: Ticket
+  taggable_id: ticket3
+  tag: two
+
+four:
+  taggable_type: User
+  taggable_id: user1
   tag: two

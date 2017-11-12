@@ -1,17 +1,25 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+---
 one:
-  _id: MyString
-  url: MyString
-  external_id: MyString
-  name: MyString
-  details: MyString
-  shared_tickets: 
+  _id: 101
+  url: http://initech.zendesk.com/api/v2/organizations/101.json
+  external_id: 9270ed79-35eb-4a38-a46f-35725197ea8d
+  name: Enthaze
+  details: MegaCorp
+  shared_tickets: false
 
 two:
-  _id: MyString
-  url: MyString
-  external_id: MyString
-  name: MyString
-  details: MyString
-  shared_tickets: 
+  _id: 103
+  url: http://initech.zendesk.com/api/v2/organizations/103.json
+  external_id: e73240f3-8ecf-411d-ad0d-80ca8a84053d
+  name: Plasmos
+  details: Non profit
+  shared_tickets: false
+
+three:
+  _id: 106
+  url: http://initech.zendesk.com/api/v2/organizations/106.json
+  external_id: 2355f080-b37c-44f3-977e-53c341fde146
+  name: Qualitern
+  details: Artisân
+  shared_tickets: false
+

@@ -1,39 +1,60 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+---
 one:
-  _id: MyString
-  url: MyString
-  external_id: MyString
-  name: MyString
-  alias: MyString
-  active: false
-  verified: false
+  id: 1
+  _id: 1
+  url: http://initech.zendesk.com/api/v2/users/1.json
+  external_id: 74341f74-9c79-49d5-9611-87ef9b6eb75f
+  name: Francisca Rasmussen
+  alias: Miss Coffey
+  active: true
+  verified: true
   shared: false
-  locale: MyString
-  timezone: MyString
-  last_login_at: 2017-11-11 12:52:55
-  email: MyString
-  phone: MyString
-  signature: MyString
-  organization: one
-  suspended: false
-  role: MyString
+  locale: en-AU
+  timezone: Sri Lanka
+  last_login_at: 2013-08-04 11:03:27
+  email: coffeyrasmussen@flotonic.com
+  phone: 8335-422-718
+  signature: Don't Worry Be Happy!
+  organization_id: one
+  suspended: true
+  role: admin
 
 two:
-  _id: MyString
-  url: MyString
-  external_id: MyString
-  name: MyString
-  alias: MyString
+  id: 2
+  _id: 5
+  url: http://initech.zendesk.com/api/v2/users/5.json
+  external_id: 29c18801-fb42-433d-8674-f37d63e637df
+  name: Loraine Pittman
+  alias: Mr Ola
+  active: true
+  verified: false
+  shared: false
+  locale: zh-CN
+  timezone: Monaco
+  last_login_at: 2013-07-03 16:59:27
+  email: olapittman@flotonic.com
+  phone: 9805-292-618
+  signature: Don't Worry Be Happy!
+  organization_id: three
+  suspended: false
+  role: admin
+
+three:
+  id: 3
+  _id: 12
+  url: http://initech.zendesk.com/api/v2/users/12.json
+  external_id: 38899b1e-89ca-43e7-b039-e3c88525f0d2
+  name: Watkins Hammond
+  alias: Mr Sally
   active: false
   verified: false
   shared: false
-  locale: MyString
-  timezone: MyString
-  last_login_at: 2017-11-11 12:52:55
-  email: MyString
-  phone: MyString
-  signature: MyString
-  organization: two
+  locale: en-AU
+  timezone: United Kingdom
+  last_login_at: 2012-12-29
+  email: sallyhammond@flotonic.com
+  phone: 8144-293-283
+  signature: Don't Worry Be Happy!
+  organization_id: one
   suspended: false
-  role: MyString
+  role: end-user

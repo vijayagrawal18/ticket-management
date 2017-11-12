@@ -1,33 +1,52 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+---
 one:
-  _id: MyString
-  url: MyString
-  external_id: MyString
-  type: 
-  subject: MyString
-  description: MyString
-  priority: 
-  status: 
-  submitter: one
-  assignee: one
+  _id: a7b16a5c-76d9-4e60-aadc-33653b828173
+  url: http://initech.zendesk.com/api/v2/tickets/a7b16a5c-76d9-4e60-aadc-33653b828173.json
+  external_id: c330acd5-26e0-4e99-b946-48b741225828
+  ticket_type: incident
+  subject: A Problem in Saint Kitts and Nevis
+  description: Nisi consequat minim ea commodo occaecat eu labore veniam reprehenderit
+    ea. Consequat labore quis do sit veniam laborum ut voluptate minim tempor consectetur.
+  priority: normal
+  status: closed
+  submitter_id: 1
+  assignee_id: 2
   organization: one
-  has_incidents: 
-  due_at: 2017-11-11 14:15:32
-  via: 
+  has_incidents: true
+  due_at: 2013-12-11 14:15:32
+  via: voice
 
 two:
-  _id: MyString
-  url: MyString
-  external_id: MyString
-  type: 
-  subject: MyString
-  description: MyString
-  priority: 
-  status: 
-  submitter: two
-  assignee: two
-  organization: two
-  has_incidents: 
+  _id: c702e937-5f2d-4d34-878a-fcb7d1ddf6aa
+  url: http://initech.zendesk.com/api/v2/tickets/c702e937-5f2d-4d34-878a-fcb7d1ddf6aa.json
+  external_id: 5e349072-774b-4c77-ba63-61bca77c82ff
+  ticket_type: question
+  subject: A Drama in Zimbabwe
+  description: Nostrud elit et minim ex adipisicing. Deserunt nostrud sint veniam
+    voluptate in laborum officia incididunt mollit culpa do veniam eiusmod ipsum.
+  priority: low
+  status: pending
+  submitter_id: 2
+  organization: one
+  has_incidents: true
+  due_at: 2017-12-11 14:15:32
+  via: web
+
+three:
+  _id: 53ae78d0-40a9-444f-9a47-bc0bf064d2ee
+  url: http://initech.zendesk.com/api/v2/tickets/53ae78d0-40a9-444f-9a47-bc0bf064d2ee.json
+  external_id: 8223e8f1-38bb-4904-b37b-fda9bb4f00fb
+  ticket_type: problem
+  subject: A Problem in Trinidad and Tobago
+  description: Consequat sit sint velit anim laboris adipisicing fugiat laborum quis
+    deserunt nostrud excepteur aliqua. Sit sint sunt ea cupidatat qui anim cillum
+    ullamco occaecat.
+  priority: high
+  status: open
+  submitter_id: 3
+  assignee_id: two
+  organization: one
+  has_incidents: true
   due_at: 2017-11-11 14:15:32
-  via: 
+  via: voice
