@@ -13,7 +13,23 @@ class Ticket < ApplicationRecord
   enum via: %i(web chat voice)
 
   def self.searchable_attributes
-    (column_names - ["id", "updated_at"])
+    non_searchables = ["id", "updated_at", "submitter_id", "assignee_id", "organization_id"]
+    additional_searchables = ["submitter", "assignee", "organization"]
+
+    column_names - non_searchables + additional_searchables
+  end
+
+  def self.search_by(field, term)
+    case field
+    when "submitter", "assignee"
+      if term.present?
+        joins(field.to_sym).where("users.name = ?", term)
+      else
+        where(field => nil)
+      end
+    else
+      super(field, term)
+    end
   end
 
 end

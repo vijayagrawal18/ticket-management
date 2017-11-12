@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:_id).all.page params[:page]
+    @users = User.includes(:organization).order(:_id).page params[:page]
     @users = search @users
   end
 
