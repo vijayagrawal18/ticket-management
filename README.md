@@ -11,10 +11,10 @@ bundle install
 
 # Setup data
 # CAUTION:: It drops DB and re-populates with sample data.
-rails setup
+bundle exec rails setup
 
 # Start puma server on port 3000
-rails server
+bundle exec rails server
 
 open http://localhost:3000
 ```
@@ -22,5 +22,5 @@ open http://localhost:3000
 ## Command to execute all test cases
 
 ```
-rails test
+bundle exec rails test
 ```
