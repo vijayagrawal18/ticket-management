@@ -6,13 +6,13 @@ class TicketTest < ActiveSupport::TestCase
   end
 
   test "search by tags" do
-    filtered = Ticket.search_by("tag", tags(:two).name)
+    filtered = Ticket.search_by("tags", tags(:two).name)
     assert_equal @ticket, filtered.first
     assert_equal 1, filtered.count
   end
 
   test "search by tags negative" do
-    filtered = Ticket.search_by("tag", "random")
+    filtered = Ticket.search_by("tags", "random")
     assert_equal 0, filtered.count
   end
 

@@ -19,3 +19,8 @@ four:
   taggable_type: User
   taggable_id: 1
   tag: two
+
+five:
+  taggable_type: Organization
+  taggable: two
+  tag: two

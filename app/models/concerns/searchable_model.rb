@@ -1,7 +1,7 @@
 module SearchableModel
   extend ActiveSupport::Concern
 
-  TAG_FIELD = "tag"
+  TAG_FIELD = "tags"
   DOMAIN_FIELD = "domain"
   ORGANIZATION_FIELD = "organization_id"
 
@@ -60,9 +60,11 @@ module SearchableModel
       end
     end
 
-    def search_by_tag term
+    def search_by_tags term
       if term.present?
-        where(id: self.joins(:tags).where("UPPER(tags.name) = UPPER(?)", term))
+        term_arr = term.split(",").map { |term| term.strip.upcase }
+        tags = Tag.where("UPPER(tags.name) IN (?)", term_arr)
+        where(id: TagList.having_all(tags, self.to_s).select(:taggable_id))
       else
         where.not(id: TagList.where(taggable_type: self.to_s).select(:taggable_id))
       end

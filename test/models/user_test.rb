@@ -34,19 +34,19 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "search by tags" do
-    filtered = User.search_by("tag", tags(:two).name)
+    filtered = User.search_by("tags", tags(:two).name)
     assert_equal @user, filtered.first
     assert_equal 1, filtered.count
   end
 
   test "search by tags insensitive" do
-    filtered = User.search_by("tag", "TaG2")
+    filtered = User.search_by("tags", "TaG2")
     assert_equal @user, filtered.first
     assert_equal 1, filtered.count
   end
 
   test "search by empty tag" do
-    filtered = User.search_by("tag", "")
+    filtered = User.search_by("tags", "")
     assert_equal 2, filtered.count
   end
 
