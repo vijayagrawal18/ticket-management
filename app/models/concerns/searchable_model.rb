@@ -64,6 +64,9 @@ module SearchableModel
       if term.present?
         term_arr = term.split(",").map { |term| term.strip.upcase }
         tags = Tag.where("UPPER(tags.name) IN (?)", term_arr)
+
+        return none if tags.count != term_arr.compact.count
+
         where(id: TagList.having_all(tags, self.to_s).select(:taggable_id))
       else
         where.not(id: TagList.where(taggable_type: self.to_s).select(:taggable_id))
