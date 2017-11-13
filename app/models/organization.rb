@@ -19,7 +19,7 @@ class Organization < ApplicationRecord
 
   def self.search_by_domain term
     if term.present?
-      where(id: self.joins(:domains).where("domains.name = ?", term))
+      where(id: self.joins(:domains).where("UPPER(domains.name) = UPPER(?)", term))
     else
       where.not(id: OrganizationDomain.select(:organization_id))
     end

@@ -39,6 +39,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, filtered.count
   end
 
+  test "search by tags insensitive" do
+    filtered = User.search_by("tag", "TaG2")
+    assert_equal @user, filtered.first
+    assert_equal 1, filtered.count
+  end
+
   test "search by empty tag" do
     filtered = User.search_by("tag", "")
     assert_equal 2, filtered.count
@@ -58,6 +64,12 @@ class UserTest < ActiveSupport::TestCase
 
   test "search by name column" do
     filtered = User.search_by("name", @user.name)
+    assert_equal @user, filtered.first
+    assert_equal 1, filtered.count
+  end
+
+  test "search by name case insensitive" do
+    filtered = User.search_by("name", @user.name.upcase)
     assert_equal @user, filtered.first
     assert_equal 1, filtered.count
   end

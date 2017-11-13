@@ -18,6 +18,12 @@ class OrganizationTest < ActiveSupport::TestCase
     assert_equal 1, filtered.count
   end
 
+  test "search by domains case insensitive" do
+    filtered = Organization.search_by("domain", domains(:d1).name.upcase)
+    assert_equal organizations(:one), filtered.first
+    assert_equal 1, filtered.count
+  end
+
   test "search by domains negative" do
     filtered = Organization.search_by("domain", "random")
     assert_equal 0, filtered.count

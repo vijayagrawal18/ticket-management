@@ -31,11 +31,15 @@ module SearchableModel
     end
 
     def boolean_columns
-      columns_for "boolean"
+      @_boolean_columns ||= columns_for "boolean"
     end
 
     def datetime_columns
-      columns_for "datetime"
+      @_datetime_columns ||=  columns_for "datetime"
+    end
+
+    def string_columns
+      @_string_columns ||=  columns_for "varchar"
     end
 
     def columns_for type
@@ -58,7 +62,7 @@ module SearchableModel
 
     def search_by_tag term
       if term.present?
-        where(id: self.joins(:tags).where("tags.name = ?", term))
+        where(id: self.joins(:tags).where("UPPER(tags.name) = UPPER(?)", term))
       else
         where.not(id: TagList.where(taggable_type: self.to_s).select(:taggable_id))
       end
@@ -74,7 +78,11 @@ module SearchableModel
 
     def generic_search_by field, term
       if term.present?
-        where(field => term)
+        if string_columns.include? field
+          where("UPPER(#{field}) = UPPER(?)", term)
+        else
+          where(field => term)
+        end
       else
         where("#{field} = ? or #{field} IS NULL", term)
       end

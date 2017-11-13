@@ -8,7 +8,7 @@ module Searchable
   private
 
   def search(entity)
-    entity = entity.search_by(@search_field, @search_term) if @search_field
+    entity = entity.search_by(@search_field, @search_term&.downcase) if @search_field
     entity
   end
 
