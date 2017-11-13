@@ -17,9 +17,14 @@ class Organization < ApplicationRecord
     end
   end
 
-  def self.search_by_domain term
+  def self.search_by_domains term
     if term.present?
-      where(id: self.joins(:domains).where("UPPER(domains.name) = UPPER(?)", term))
+      term_arr = term.split(",").map { |name| name.strip.upcase }
+      domains = Domain.where("UPPER(name) IN (?)", term_arr)
+
+      return none if domains.count != term_arr.compact.count
+
+      where(id: OrganizationDomain.having_all(domains).select(:organization_id))
     else
       where.not(id: OrganizationDomain.select(:organization_id))
     end

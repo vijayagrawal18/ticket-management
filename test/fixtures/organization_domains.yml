@@ -7,3 +7,7 @@ one:
 two:
   organization: one
   domain: d2
+
+three:
+  organization: two
+  domain: d2
